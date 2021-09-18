@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Users\PermissionController;
+use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Admin\Auth\NewPasswordController;
+use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +26,16 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
+
+    Route::middleware('guest')->group(function () {
+        Route::name('admin.auth.login')->get('/acessar', [AuthenticatedSessionController::class, 'create']);
+        Route::name('admin.auth.access')->post('/acessar', [AuthenticatedSessionController::class, 'store']);
+        Route::name('admin.auth.forgot')->get('recuperar-senha', [PasswordResetLinkController::class, 'create']);
+        Route::name('admin.auth.forgot-password')->post('recuperar-senha', [PasswordResetLinkController::class, 'store']);
+        Route::name('admin.auth.reset')->get('resetar-senha/{token}', [NewPasswordController::class, 'create']);
+        Route::name('admin.auth.reset-password')->post('resetar-senha', [NewPasswordController::class, 'store']);
+    });
+
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 

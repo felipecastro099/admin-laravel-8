@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    use SEOTools;
+
     /**
      * Display the login view.
      *
@@ -17,7 +20,10 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        // Set meta tags
+        $this->seo()->setTitle('Bem vindo a sua dashboard!');
+
+        return view('admin.auth.login');
     }
 
     /**

@@ -30,9 +30,9 @@
 <script src="{{ URL::asset('/admin/js/pages/form-validation.init.js') }}"></script>
 
 <!-- toastr plugin -->
-<script src="{{ URL::asset('/assets/libs/toastr/toastr.min.js') }}"></script>
+<script src="{{ URL::asset('/admin/libs/toastr/toastr.min.js') }}"></script>
 
 <!-- toastr init -->
-<script src="{{ URL::asset('/assets/js/pages/toastr.init.js') }}"></script>
+<script src="{{ URL::asset('/admin/js/pages/toastr.init.js') }}"></script>
 
 @yield('script-bottom')
