@@ -1,6 +1,5 @@
 {!! Form::open(['route' => ['admin.auth.login'], 'class' => 'form-horizontal']) !!}
 <div class="mb-3">
-    <label for="username" class="form-label">Email</label>
     {!! Form::label('email', 'Email', ['class' => "form-label"]) !!}
     {!! Form::email('email', old('email'), ['class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : null), 'placeholder' => 'Seu email']) !!}
     @error('email')

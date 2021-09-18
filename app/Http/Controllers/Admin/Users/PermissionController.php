@@ -104,7 +104,7 @@ class PermissionController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @return Response
+     * @return Response|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -124,22 +124,13 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      * @param  Request $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        $validate = validator($request->all(),[
-            'details' => 'required|max:60'
+        $request->validate([
+            'details' => ['required', 'max:60'],
         ]);
-
-        // If fails validate
-        if($validate->fails()):
-            // Warning message
-            flash('Falha ao atualizar permissão.')->warning();
-
-            // Redirect same page with errors messages
-            return redirect()->back()->withInput()->withErrors($validate->getMessageBag());
-        endif;
 
         // Fetch result
         $result = $this->permissions->findOrFail($id);
@@ -150,9 +141,6 @@ class PermissionController extends Controller
         // Save result
         $result->save();
 
-        // Success message
-        flash('Permissão atualizada com sucesso.')->success();
-
         // Redirect to list
         return redirect()->route('admin.permissions.index');
     }
@@ -160,7 +148,7 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param  Request $request
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request, $id)
     {

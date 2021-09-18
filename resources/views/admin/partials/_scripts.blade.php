@@ -35,4 +35,6 @@
 <!-- toastr init -->
 <script src="{{ URL::asset('/admin/js/pages/toastr.init.js') }}"></script>
 
+<script src="{{ URL::asset('/admin/js/pages/alertModal.js') }}"></script>
+
 @yield('script-bottom')
