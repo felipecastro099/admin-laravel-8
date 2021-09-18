@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
+use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
 class PasswordResetLinkController extends Controller
 {
+    use SEOTools;
+
     /**
      * Display the password reset link request view.
      *
@@ -15,7 +18,9 @@ class PasswordResetLinkController extends Controller
      */
     public function create()
     {
-        return view('auth.forgot-password');
+        $this->seo()->setTitle('Recuperar a senha');
+
+        return view('admin.auth.forgot-password');
     }
 
     /**

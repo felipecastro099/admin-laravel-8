@@ -1,4 +1,4 @@
-{!! Form::open(['route' => ['login'], 'class' => 'form-horizontal']) !!}
+{!! Form::open(['route' => ['admin.auth.login'], 'class' => 'form-horizontal']) !!}
 <div class="mb-3">
     <label for="username" class="form-label">Email</label>
     {!! Form::label('email', 'Email', ['class' => "form-label"]) !!}
@@ -31,8 +31,8 @@
 </div>
 
 <div class="mt-4 text-center">
-    @if (Route::has('password.request'))
-        <a href="{{ route('password.request') }}" class="text-muted"><i
+    @if (Route::has('admin.auth.forgot'))
+        <a href="{{ route('admin.auth.forgot') }}" class="text-muted"><i
                 class="mdi mdi-lock me-1"></i> Esqueceu a senha?</a>
     @endif
 

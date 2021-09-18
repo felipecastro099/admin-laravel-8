@@ -1,8 +1,4 @@
-@extends('layouts.master-without-nav')
-
-@section('title')
-    @lang('translation.Recover_Password')
-@endsection
+@extends('admin.layouts.public')
 
 @section('body')
 
@@ -19,13 +15,12 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="text-primary p-4">
-                                            <h5 class="text-primary"> Reset Password</h5>
-                                            <p>Re-Password with Skote.</p>
+                                            <h5 class="text-primary"> Recuperação de senha</h5>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
-                                        <img src="{{ URL::asset('/assets/images/profile-img.png') }}" alt=""
-                                            class="img-fluid">
+                                        <img src="{{ URL::asset('/admin/images/profile-img.png') }}" alt=""
+                                             class="img-fluid">
                                     </div>
                                 </div>
                             </div>
@@ -34,36 +29,50 @@
                                     <a href="index">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="{{ URL::asset('/assets/images/logo.svg') }}" alt=""
-                                                    class="rounded-circle" height="34">
+                                                <img src="{{ URL::asset('/admin/images/logo.svg') }}" alt=""
+                                                     class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
                                 </div>
 
                                 <div class="p-2">
-                                    @if (session('status'))
-                                        <div class="alert alert-success text-center mb-4" role="alert">
-                                            {{ session('status') }}
-                                        </div>
-                                    @endif
-                                    <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                                    <form class="form-horizontal" method="POST" action="{{ route('password.update') }}">
                                         @csrf
+                                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                         <div class="mb-3">
                                             <label for="useremail" class="form-label">Email</label>
                                             <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                                id="useremail" name="email" placeholder="Enter email"
-                                                value="{{ old('email') }}" id="email">
+                                                   id="useremail" name="email" placeholder="Seu email"
+                                                   value="{{ old('email', $request->email) }}" id="email">
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
+                                            <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
                                         </div>
 
+                                        <div class="mb-3">
+                                            <label for="userpassword">Password</label>
+                                            <input type="password"
+                                                   class="form-control @error('password') is-invalid @enderror" name="password"
+                                                   id="userpassword" placeholder="Sua senha">
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="userpassword">Confirm Password</label>
+                                            <input id="password-confirm" type="password" name="password_confirmation"
+                                                   class="form-control" placeholder="Confirmação de senha">
+                                        </div>
+
                                         <div class="text-end">
                                             <button class="btn btn-primary w-md waves-effect waves-light"
-                                                type="submit">Reset</button>
+                                                    type="submit">Enviar</button>
                                         </div>
 
                                     </form>
@@ -72,12 +81,12 @@
                             </div>
                         </div>
                         <div class="mt-5 text-center">
-                            <p>Remember It ? <a href="{{ url('login') }}" class="fw-medium text-primary"> Sign In here</a>
+                            <p>Se lembrou ? <a href="{{ route('admin.auth.login') }}" class="fw-medium text-primary"> Login</a>
                             </p>
                             <p>© <script>
                                     document.write(new Date().getFullYear())
 
-                                </script> Skote. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                                </script> {{ env('APP_NAME') }}. Feito com <i class="mdi mdi-heart text-danger"></i> por Felipe Castro
                         </div>
 
                     </div>
@@ -85,4 +94,4 @@
             </div>
         </div>
 
-    @endsection
+@endsection
