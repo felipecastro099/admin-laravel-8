@@ -48,7 +48,7 @@
 
                 @can('view_roles')
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="{{ route('admin.roles.index') }}" class="waves-effect">
                             <i class="bx bx bx-group"></i>
                             <span key="t-bla">Grupos</span>
                         </a>

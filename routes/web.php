@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
+use App\Http\Controllers\Admin\Users\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,15 @@ Route::prefix('admin')->group(function () {
             Route::name('admin.permissions.edit')->get('/editar/{id}', [PermissionController::class, 'edit']);
             Route::name('admin.permissions.update')->put('/editar/{id}', [PermissionController::class, 'update']);
             Route::name('admin.permissions.destroy')->delete('/excluir/{id}', [PermissionController::class, 'destroy']);
+        });
+
+        // Roles
+        Route::prefix('grupos')->group(function(){
+            Route::name('admin.roles.index')->get('/', [RoleController::class, 'index']);
+            Route::name('admin.roles.create')->get('/adicionar', [RoleController::class, 'create']);
+            Route::name('admin.roles.store')->post('/adicionar', [RoleController::class, 'store']);
+            Route::name('admin.roles.edit')->get('/editar/{id}', [RoleController::class, 'edit']);
+            Route::name('admin.roles.update')->put('/editar/{id}', [RoleController::class, 'update']);
         });
     });
 });

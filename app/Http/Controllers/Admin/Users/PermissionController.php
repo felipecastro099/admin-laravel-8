@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
-use Auth;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
