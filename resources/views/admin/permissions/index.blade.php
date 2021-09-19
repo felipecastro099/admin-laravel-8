@@ -1,4 +1,11 @@
 @extends('admin.layouts.app')
+
+@section('css')
+
+    {!! Html::style('/admin/libs/sweetalert2/sweetalert2.min.css') !!}
+
+@endsection
+
 @section('content')
 
     <div class="card">
@@ -22,7 +29,7 @@
             </div>
 
             <div class="table-responsive">
-                <table class="table table-striped mb-0">
+                <table class="table table-striped mb-0" id="users-table">
 
                     <thead>
                     <tr>
@@ -33,7 +40,7 @@
                     </thead>
                     <tbody>
                     @foreach($results as $result)
-                        <tr>
+                        <tr id="result-{{ $result->id }}">
                             <td>{{ $result->details }}</td>
                             <td>{{ $result->name }}</td>
                             <td style="width: 90px;">
@@ -47,9 +54,12 @@
                                         @endcan
                                         @can('delete_permissions')
                                             <li class="list-inline-item">
-                                                <a href="#" data-target="#result-{{ $result->id }}" data-type="delete"
-                                                   data-message="Deseja excluir a permissão {{ $result->details }}?"
-                                                   data-confirm="Excluir"><i class="bx bxs-trash"></i></a>
+                                                <a href="{{ route('admin.permissions.destroy', ['id' => $result->id]) }}"
+                                                   data-target="#result-{{ $result->id }}"
+                                                   class="delete-data"
+                                                   title="{{ $result->details }}">
+                                                    <i class="bx bxs-trash"></i>
+                                                </a>
                                             </li>
                                         @endcan
                                     </ul>
@@ -65,4 +75,64 @@
     </div>
 
     {{ $results->render('admin.partials._pagination') }}
+@endsection
+
+@section('script')
+
+    <script>
+
+        $('.delete-data').click(function (event){
+            event.preventDefault();
+
+            var me = $(this),
+                url = me.attr('href'),
+                title = me.attr('title'),
+                csrf_token = $('meta[name="csrf-token"]').attr('content');
+                id = me.attr('data-target')
+
+            Swal.fire({
+                title: 'Tem certeza que deseja excluir ?',
+                text: 'Isso não poderá ser reverdito!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: "#34c38f",
+                cancelButtonColor: "#f46a6a",
+                confirmButtonText: 'Sim, deletar!'
+            }).then((result) => {
+                if(result.value) {
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            '_method': 'DELETE',
+                            '_token': csrf_token
+                        },
+                        success: function (response) {
+
+                            if (response.success === true) {
+                                Swal.fire("Done!", response.message, "success");
+
+                                $(id).fadeOut(1000);
+                                setTimeout(function(){
+                                    $(id).remove()
+                                }, 1000);
+
+                            } else {
+                                Swal.fire("Error!", response.message, "error");
+                            }
+                        },
+                        error: function (response) {
+                            Swal.fire({
+                                type: 'error',
+                                title: 'Oops..',
+                                text: 'Erro ao excluir',
+                            });
+                        }
+                    });
+                }
+            });
+        });
+
+    </script>
+
 @endsection
