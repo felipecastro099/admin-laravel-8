@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
@@ -68,7 +70,7 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -124,7 +126,7 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      * @param  Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -167,10 +169,16 @@ class PermissionController extends Controller
                 $result->delete();
 
                 // Return success response
-                return response()->json(['success' => true, 'message' => 'Permissão removida com sucesso.'], 200);
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Permissão removida com sucesso.'
+                ]);
             else:
                 // Return error response
-                return response()->json(['success' => false, 'message' => 'Permissão não encontrada.'], 400);
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Permissão não encontrada.'
+                ]);
             endif;
         endif;
 

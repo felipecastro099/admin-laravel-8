@@ -49,3 +49,21 @@ Breadcrumbs::for('admin.roles.edit', function ($trail, $id) {
     $trail->parent('admin.roles.index');
     $trail->push('Editar Grupo', route('admin.roles.edit', ['id' => $id]));
 });
+
+// Settings
+Breadcrumbs::for('admin.settings.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Configurações', route('admin.settings.index'));
+});
+
+// Create Setting
+Breadcrumbs::for('admin.settings.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.settings.index');
+    $trail->push('Nova Configuração', route('admin.settings.create'));
+});
+
+// Edit Settings
+Breadcrumbs::for('admin.settings.edit', function ($trail, $id) {
+    $trail->parent('admin.settings.index');
+    $trail->push('Editar Configuração', route('admin.settings.edit', ['id' => $id]));
+});

@@ -66,7 +66,7 @@
 
                 @can('view_settings')
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="{{ route('admin.settings.index') }}" class="waves-effect">
                             <i class="bx bx-cog"></i>
                             <span key="t-bla">Configurações</span>
                         </a>

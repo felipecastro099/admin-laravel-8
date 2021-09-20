@@ -37,7 +37,7 @@
                                 </div>
 
                                 <div class="p-2">
-                                    <form class="form-horizontal" method="POST" action="{{ route('password.update') }}">
+                                    <form class="form-horizontal" method="POST" action="{{ route('admin.auth.reset-password') }}">
                                         @csrf
                                         <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                         <div class="mb-3">

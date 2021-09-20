@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Users\RoleController;
+use App\Http\Controllers\Admin\Settings\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,17 @@ Route::prefix('admin')->group(function () {
             Route::name('admin.roles.edit')->get('/editar/{id}', [RoleController::class, 'edit']);
             Route::name('admin.roles.update')->put('/editar/{id}', [RoleController::class, 'update']);
         });
+
+        // Settings
+        Route::prefix('configuracoes')->group(function(){
+            Route::name('admin.settings.index')->get('/', [SettingController::class,'index']);
+            Route::name('admin.settings.create')->get('/adicionar', [SettingController::class, 'create']);
+            Route::name('admin.settings.store')->post('/adicionar', [SettingController::class, 'store']);
+            Route::name('admin.settings.edit')->get('/editar/{id}', [SettingController::class, 'edit']);
+            Route::name('admin.settings.update')->put('/editar/{id}', [SettingController::class, 'update']);
+            Route::name('admin.settings.destroy')->delete('/excluir/{id}', [SettingController::class, 'destroy']);
+        });
     });
 });
 
-require __DIR__ . '/auth.php';
+//require __DIR__ . '/auth.php';
