@@ -45,13 +45,6 @@
                                                         class="bx bxs-edit-alt"></i></a>
                                             </li>
                                         @endcan
-                                        @can('delete_roles')
-                                            <li class="list-inline-item">
-                                                <a href="#" data-target="#result-{{ $result->id }}" data-type="delete"
-                                                   data-message="Deseja excluir a permissão {{ $result->details }}?"
-                                                   data-confirm="Excluir"><i class="bx bxs-trash"></i></a>
-                                            </li>
-                                        @endcan
                                     </ul>
                                 </div>
                             </td>

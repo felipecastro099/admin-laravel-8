@@ -51,7 +51,7 @@
                                                 <a href="{{ route('admin.permissions.destroy', ['id' => $result->id]) }}"
                                                    data-target="#result-{{ $result->id }}"
                                                    class="delete-data"
-                                                   title="{{ $result->details }}">
+                                                   title="Deseja excluir a permissão {{ $result->details }}">
                                                     <i class="bx bxs-trash"></i>
                                                 </a>
                                             </li>

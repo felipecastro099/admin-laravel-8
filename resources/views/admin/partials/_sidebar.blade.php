@@ -64,6 +64,15 @@
                     </li>
                 @endcan
 
+                @can('view_audits')
+                    <li>
+                        <a href="#" class="waves-effect">
+                            <i class="bx bx-bullseye"></i>
+                            <span key="t-bla">Auditoria</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('view_settings')
                     <li>
                         <a href="{{ route('admin.settings.index') }}" class="waves-effect">
