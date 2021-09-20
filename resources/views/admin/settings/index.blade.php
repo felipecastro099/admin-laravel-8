@@ -1,4 +1,5 @@
 @extends('admin.layouts.app')
+
 @section('content')
 
     <div class="card">
@@ -39,7 +40,7 @@
                             <td>{{ $result->title }}</td>
                             <td>{{ $result->key }}</td>
                             <td>{{ $result->value }}</td>
-                            <td>{{ $result->active }}</td>
+                            <td>{!! isActive($result->active) !!}</td>
                             <td style="width: 90px;">
                                 <div>
                                     <ul class="list-inline mb-0 font-size-16">
@@ -50,11 +51,14 @@
                                             </li>
                                         @endcan
                                         @can('delete_settings')
-                                            <li class="list-inline-item">
-                                                <a href="#" data-target="#result-{{ $result->id }}" data-type="delete"
-                                                   data-message="Deseja excluir a permissão {{ $result->details }}?"
-                                                   data-confirm="Excluir"><i class="bx bxs-trash"></i></a>
-                                            </li>
+                                                <li class="list-inline-item">
+                                                    <a href="{{ route('admin.settings.destroy', ['id' => $result->id]) }}"
+                                                       data-target="#result-{{ $result->id }}"
+                                                       class="delete-data"
+                                                       title="Deseja excluir a configuração {{ $result->title }}?">
+                                                        <i class="bx bxs-trash"></i>
+                                                    </a>
+                                                </li>
                                         @endcan
                                     </ul>
                                 </div>

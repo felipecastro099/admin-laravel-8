@@ -1,11 +1,5 @@
 @extends('admin.layouts.app')
 
-@section('css')
-
-    {!! Html::style('/admin/libs/sweetalert2/sweetalert2.min.css') !!}
-
-@endsection
-
 @section('content')
 
     <div class="card">

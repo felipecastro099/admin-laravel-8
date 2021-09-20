@@ -13,3 +13,5 @@
 <link href="{{ URL::asset('/admin/libs/bootstrap-timepicker/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ URL::asset('/admin/libs/bootstrap-touchspin/bootstrap-touchspin.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ URL::asset('/admin/libs/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css">
+
+{!! Html::style('/admin/libs/sweetalert2/sweetalert2.min.css') !!}

@@ -24,10 +24,7 @@
                     </div>
                 </div>
 
-                <div class="form-check form-switch form-switch-md mb-3 mt-3" dir="ltr">
-                    <label class="form-check-label">Ativo?</label>
-                    {{ Form::checkbox('active', null, null, ['class' => 'form-check-input']) }}
-                </div>
+                {{ Form::switch('active', null, 'Ativo?') }}
 
                 <div class="mt-4">
                     @include('admin.settings._form')

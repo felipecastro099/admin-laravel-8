@@ -112,9 +112,6 @@ class SettingController extends Controller
         // Fill data and save
         $result->fill($request->except('key'))->save();
 
-        // Success message
-        flash('Configuração atualizada com sucesso . ')->success();
-
         // Redirect to list
         return redirect()->route('admin.settings.index');
     }

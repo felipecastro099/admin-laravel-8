@@ -97,10 +97,10 @@ if (! function_exists('isActive')):
     {
         switch($status):
             case 0:
-                $status_name = '<span class="badge badge-danger -status">Desativado</span>';
+                $status_name = '<span class="badge bg-danger">Desativado</span>';
                 break;
             case 1:
-                $status_name = '<span class="badge badge-success -status">Ativo</span>';
+                $status_name = '<span class="badge bg-success">Ativo</span>';
                 break;
         endswitch;
         return $status_name;

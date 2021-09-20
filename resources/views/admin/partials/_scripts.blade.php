@@ -47,13 +47,14 @@
         id = me.attr('data-target')
 
         Swal.fire({
-            title: 'Tem certeza que deseja excluir ?',
-            text: 'Issa ação não podera ser revertida!',
+            title: title,
+            text: 'Essa ação não poderá ser revertida!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: "#34c38f",
             cancelButtonColor: "#f46a6a",
-            confirmButtonText: 'Sim, deletar!'
+            confirmButtonText: 'Deletar',
+            cancelButtonText: 'Cancelar'
         }).then((result) => {
             if(result.value) {
                 $.ajax({
