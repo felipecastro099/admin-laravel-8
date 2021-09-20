@@ -47,14 +47,13 @@
                                         @endcan
                                         @can('delete_permissions')
                                             <li class="list-inline-item">
-                                                <a href="#" data-target="#result-{{ $result->id }}" data-type="delete"
+                                                <a href="{{ route('admin.permissions.destroy', ['id' => $result->id]) }}" data-target="#result-{{ $result->id }}" data-type="delete"
                                                    data-message="Deseja excluir a permissão {{ $result->details }}?"
                                                    data-confirm="Excluir"><i class="bx bxs-trash"></i></a>
                                             </li>
                                         @endcan
                                     </ul>
                                 </div>
-
                             </td>
                         </tr>
                     @endforeach

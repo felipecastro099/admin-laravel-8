@@ -54,7 +54,6 @@
                                         @endcan
                                     </ul>
                                 </div>
-
                             </td>
                         </tr>
                     @endforeach
