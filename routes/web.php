@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Users\RoleController;
 use App\Http\Controllers\Admin\Settings\SettingController;
+use App\Http\Controllers\Admin\Audit\AuditController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ Route::prefix('admin')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
+
+        // Audit
+        Route::prefix('auditoria')->group(function(){
+            Route::name('admin.audits.index')->get('/', [AuditController::class, 'index']);
+            Route::name('admin.audits.show')->get('/{id}', [AuditController::class, 'show']);
+        });
 
         Route::prefix('permissoes')->group(function () {
             Route::name('admin.permissions.index')->get('/', [PermissionController::class, 'index']);

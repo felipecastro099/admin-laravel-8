@@ -14,6 +14,18 @@ Breadcrumbs::for('admin.dashboard.index', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('admin.dashboard.index'));
 });
 
+// Audit
+Breadcrumbs::for('admin.audits.index', function ($trail) {
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Auditoria', route('admin.audits.index'));
+});
+
+// Show audit
+Breadcrumbs::for('admin.audits.show', function ($trail, $id) {
+    $trail->parent('admin.audits.index');
+    $trail->push('Log', route('admin.audits.show', ['id' => $id]));
+});
+
 // Permissions
 Breadcrumbs::for('admin.permissions.index', function (BreadcrumbTrail $trail) {
     $trail->parent('admin.dashboard.index');

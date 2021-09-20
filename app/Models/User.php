@@ -24,8 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'dob',
-        'avatar',
+        'phone',
     ];
 
     /**
@@ -53,5 +52,35 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token, $this));
+    }
+
+    /**
+     * Scopes
+     */
+    public function findForPassport($identifier) {
+        return $this->orWhere('email', $identifier)->where('active', true)->first();
+    }
+
+    public function scopeIsRoot($query, $user) {
+        if(!$user->hasRole('root')):
+            return $this->whereHas('roles', function($q) {
+                $q->where('name', '<>', 'root');
+            });
+        endif;
+    }
+
+    /**
+     * Mutators
+     */
+    public function setEmailAttribute($input)
+    {
+        if ($input)
+            $this->attributes['email'] = mb_strtolower($input, 'UTF-8');
+    }
+
+    public function setPhoneAttribute($input)
+    {
+        if ($input)
+            $this->attributes['phone'] = trim(preg_replace('#[^0-9]#', '', $input));
     }
 }

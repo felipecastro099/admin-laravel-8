@@ -11,4 +11,16 @@ return [
             'permission' => 'view_dashboard'
         ]
     ],
+
+    'audit' => [
+        'types' => [
+
+        ],
+        'actions' => [
+            'created'       => 'Criação',
+            'updated'       => 'Alteração',
+            'deleted'       => 'Exclusão',
+            'restored'      => 'Reativação'
+        ]
+    ],
 ];
