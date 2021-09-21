@@ -15,17 +15,6 @@ use App\Http\Controllers\Admin\Users\RoleController;
 use App\Http\Controllers\Admin\Settings\SettingController;
 use App\Http\Controllers\Admin\Audit\AuditController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -47,7 +36,7 @@ Route::prefix('admin')->group(function () {
         Route::name('admin.auth.verification.send')->post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->middleware('throttle:6,1');
         Route::name('admin.password.confirm')->get('/confirm-password', [ConfirmablePasswordController::class, 'show']);
         Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']);
-        Route::name('admin.auth.logout')->post('/logout', [AuthenticatedSessionController::class, 'destroy']);
+        Route::name('admin.auth.logout')->get('/logout', [AuthenticatedSessionController::class, 'destroy']);
     });
 
     Route::middleware('auth')->group(function () {

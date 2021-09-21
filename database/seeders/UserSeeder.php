@@ -21,6 +21,14 @@ class UserSeeder extends Seeder
             'password' => bcrypt('senha')
         ]);
 
+        $yuri = User::create([
+            'name' => 'Yuri Canuto',
+            'email' => 'yuriasc@gmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123123')
+        ]);
+
         $felipe->assignRole('root');
+        $yuri->assignRole('root');
     }
 }
