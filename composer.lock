@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaf9445259060e333af2e6271c21ab80",
+    "content-hash": "4babebf47636e1e3cac72a9a168d952b",
     "packages": [
         {
             "name": "artesaos/seotools",

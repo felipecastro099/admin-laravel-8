@@ -3,13 +3,33 @@
 namespace App\Notifications\Users;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class ResetPasswordNotification extends Notification
 {
     use Queueable;
+
+    /**
+     * The password reset token.
+     *
+     * @var string
+     */
+    public $token;
+
+    /**
+     * The callback that should be used to create the reset password URL.
+     *
+     * @var \Closure|null
+     */
+    public static $createUrlCallback;
+
+    /**
+     * The callback that should be used to build the mail message.
+     *
+     * @var \Closure|null
+     */
+    public static $toMailCallback;
 
     /**
      * Create a new notification instance.
@@ -40,9 +60,22 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        if (static::$toMailCallback) {
+            return call_user_func(static::$toMailCallback, $notifiable, $this->token);
+        }
+
+        if (static::$createUrlCallback) {
+            $url = call_user_func(static::$createUrlCallback, $notifiable, $this->token);
+        } else {
+            $url = url(route('admin.auth.reset', [
+                'token' => $this->token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+        }
+
         return (new MailMessage)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', route('admin.auth.reset', ['token' => $this->token]))
+                    ->action('Notification Action', $url)
                     ->line('Thank you for using our application!');
     }
 
