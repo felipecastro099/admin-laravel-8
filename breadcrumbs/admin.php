@@ -79,3 +79,21 @@ Breadcrumbs::for('admin.settings.edit', function ($trail, $id) {
     $trail->parent('admin.settings.index');
     $trail->push('Editar Configuração', route('admin.settings.edit', ['id' => $id]));
 });
+
+/**
+ * Users
+ */
+Breadcrumbs::for('admin.users.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Usuários', route('admin.users.index'));
+});
+
+Breadcrumbs::for('admin.users.create', function (BreadcrumbTrail $trail) {
+    $trail->parent('admin.users.index');
+    $trail->push('Novo Usuário', route('admin.users.create'));
+});
+
+Breadcrumbs::for('admin.users.edit', function ($trail, $id) {
+    $trail->parent('admin.users.index');
+    $trail->push('Editar Usuário', route('admin.users.edit', ['id' => $id]));
+});
