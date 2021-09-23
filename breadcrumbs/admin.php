@@ -20,6 +20,12 @@ Breadcrumbs::for('admin.audits.index', function ($trail) {
     $trail->push('Auditoria', route('admin.audits.index'));
 });
 
+// Analytics
+Breadcrumbs::for('admin.analytics.index', function ($trail) {
+    $trail->parent('admin.dashboard.index');
+    $trail->push('Acessos', route('admin.analytics.index'));
+});
+
 // Show audit
 Breadcrumbs::for('admin.audits.show', function ($trail, $id) {
     $trail->parent('admin.audits.index');
