@@ -23,4 +23,8 @@ return [
             'restored'      => 'Reativação'
         ]
     ],
+
+    'user' => [
+        'password' => '@admin8Laravel'
+    ]
 ];

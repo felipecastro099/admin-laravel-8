@@ -8,12 +8,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory,
         Notifiable,
-        HasRoles;
+        HasRoles,
+        SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'phone',
+        'active',
     ];
 
     /**
@@ -44,6 +48,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'active'            => 'boolean',
     ];
 
     /**
@@ -82,5 +87,21 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         if ($input)
             $this->attributes['phone'] = trim(preg_replace('#[^0-9]#', '', $input));
+    }
+
+    /**
+     * Accessors
+     */
+    public function getActive()
+    {
+        $color = $this->active ? 'success' : 'danger';
+        $text  = $this->active ? 'Sim' : 'Não';
+
+        return "<span class=\"badge badge-pill badge-soft-{$color} font-size-11\">{$text}</span>";
+    }
+
+    public function getAvatar()
+    {
+        return isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/admin/images/users/avatar-1.jpg');
     }
 }

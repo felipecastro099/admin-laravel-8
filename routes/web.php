@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
-use App\Http\Controllers\Admin\Users\PermissionController;
+use App\Http\Controllers\Admin\Users\{PermissionController, RoleController, UserController};
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\NewPasswordController;
@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationPromptController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Admin\Users\RoleController;
 use App\Http\Controllers\Admin\Settings\SettingController;
 use App\Http\Controllers\Admin\Audit\AuditController;
 use App\Http\Controllers\Admin\Analytics\AnalyticController;
@@ -78,6 +77,16 @@ Route::prefix('admin')->group(function () {
             Route::name('admin.settings.edit')->get('/editar/{id}', [SettingController::class, 'edit']);
             Route::name('admin.settings.update')->put('/editar/{id}', [SettingController::class, 'update']);
             Route::name('admin.settings.destroy')->delete('/excluir/{id}', [SettingController::class, 'destroy']);
+        });
+
+        // Users
+        Route::prefix('usuarios')->group(function(){
+            Route::name('admin.users.index')->get('/', [UserController::class,'index']);
+            Route::name('admin.users.create')->get('/adicionar', [UserController::class, 'create']);
+            Route::name('admin.users.store')->post('/adicionar', [UserController::class, 'store']);
+            Route::name('admin.users.edit')->get('/editar/{id}', [UserController::class, 'edit']);
+            Route::name('admin.users.update')->put('/editar/{id}', [UserController::class, 'update']);
+            Route::name('admin.users.destroy')->delete('/excluir/{id}', [UserController::class, 'destroy']);
         });
     });
 });

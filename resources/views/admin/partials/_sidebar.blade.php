@@ -39,7 +39,7 @@
 
                 @can('view_users')
                     <li>
-                        <a href="#" class="waves-effect">
+                        <a href="{{ route('admin.users.index') }}" class="waves-effect">
                             <i class="bx bx-user"></i>
                             <span key="t-bla">Usuários</span>
                         </a>
