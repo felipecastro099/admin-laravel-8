@@ -1,8 +1,4 @@
-@extends('layouts.master-without-nav')
-
-@section('title')
-    @lang('translation.Error_404')
-@endsection
+@extends('admin.layouts.public')
 
 @section('body')
 
@@ -34,4 +30,4 @@
             </div>
         </div>
 
-    @endsection
+@endsection
