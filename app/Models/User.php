@@ -9,14 +9,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Auth;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasFactory,
         Notifiable,
         HasRoles,
-        SoftDeletes;
+        SoftDeletes,
+        InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -102,6 +105,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAvatar()
     {
-        return isset(Auth::user()->avatar) ? asset(Auth::user()->avatar) : asset('/admin/images/users/avatar-1.jpg');
+        $image = $this->getFirstMedia('avatar');
+        // return isset($image) ? $image->getUrl() : null;
+
+        return isset($image) ? $image->getFullUrl() : asset('/admin/images/users/avatar-1.jpg');
     }
 }

@@ -76,6 +76,9 @@ class UserController extends Controller
         // Create result
         $result = $this->users->create($request->all());
 
+        // Store media
+        storeMedia($result, $request->avatar, $result->name, 'avatar');
+
         // Redirect to list
         return redirect()->route('admin.users.index');
     }
@@ -114,6 +117,9 @@ class UserController extends Controller
 
         // Fill data
         $result->fill($request->all())->save();
+
+        // Update media
+        storeMedia($result, $request->avatar, $result->name, 'avatar', true);
 
         // Redirect to list
         return redirect()->route('admin.users.index');

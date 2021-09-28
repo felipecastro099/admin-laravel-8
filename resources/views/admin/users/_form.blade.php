@@ -32,5 +32,12 @@
             @enderror
         </div>
     </div>
+
+    <div class="col-md-4">
+        <div class="mb-3">
+            <label for="avatar" class="form-label">Foto</label>
+            <input class="form-control" type="file" id="avatar" name="avatar">
+        </div>
+    </div>
 </div>
 

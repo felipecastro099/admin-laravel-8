@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <section>
-        {!! Form::open(['route' => ['admin.users.store'], 'class' => 'form']) !!}
+        {!! Form::open(['route' => ['admin.users.store'], 'class' => 'form', 'files' => true]) !!}
         <div class="card">
             <div class="card-body">
 

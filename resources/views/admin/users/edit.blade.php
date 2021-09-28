@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <section>
-        {!! Form::model($result, ['method' => 'PUT', 'route' => ['admin.users.update',  'id' => $result->id], 'class' => 'form -default']) !!}
+        {!! Form::model($result, ['method' => 'PUT', 'route' => ['admin.users.update',  'id' => $result->id], 'class' => 'form -default', 'files' => true]) !!}
         <div class="card">
             <div class="card-body">
 
