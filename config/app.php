@@ -231,6 +231,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'SeoTools' => Artesaos\SEOTools\Facades\SEOTools::class,
+        'Analytics' => Spatie\Analytics\AnalyticsFacade::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

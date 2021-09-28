@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "artesaos/seotools": "^0.20.1",
         "diglactic/laravel-breadcrumbs": "^7.0",
         "fideloper/proxy": "^4.4",
@@ -18,6 +18,7 @@
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
         "owen-it/laravel-auditing": "^12.0",
+        "sentry/sentry-laravel": "^2.8",
         "spatie/laravel-analytics": "^3.11",
         "spatie/laravel-medialibrary": "^9.0.0",
         "spatie/laravel-permission": "^5.1"

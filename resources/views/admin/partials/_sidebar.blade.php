@@ -82,8 +82,14 @@
                     </li>
                 @endcan
 
-
-
+                @can('view_analytics')
+                    <li>
+                        <a href="{{ route('admin.analytics.index') }}" class="waves-effect">
+                            <i class="bx bx-line-chart"></i>
+                            <span key="t-bla">Acessos</span>
+                        </a>
+                    </li>
+                @endcan
             </ul>
         </div>
         <!-- Sidebar -->

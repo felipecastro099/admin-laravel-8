@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Admin\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\Settings\SettingController;
 use App\Http\Controllers\Admin\Audit\AuditController;
+use App\Http\Controllers\Admin\Analytics\AnalyticController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +47,9 @@ Route::prefix('admin')->group(function () {
             Route::name('admin.audits.index')->get('/', [AuditController::class, 'index']);
             Route::name('admin.audits.show')->get('/{id}', [AuditController::class, 'show']);
         });
+
+        // Analytics
+        Route::name('admin.analytics.index')->get('/acessos', [AnalyticController::class, 'index']);
 
         Route::prefix('permissoes')->group(function () {
             Route::name('admin.permissions.index')->get('/', [PermissionController::class, 'index']);

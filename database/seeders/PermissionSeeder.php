@@ -26,6 +26,9 @@ class PermissionSeeder extends Seeder
             // Audit
             ['name' => 'view_audits', 'details' => 'Auditorias [view]'],
 
+            // Analytics
+            ['name' => 'view_analytics', 'details' => 'Acessos [view]'],
+
             // Settings
             ['name' => 'view_settings', 'details' => 'Configurações [view]'],
             ['name' => 'add_settings', 'details' => 'Configurações [add]'],
